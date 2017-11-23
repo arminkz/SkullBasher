@@ -1,1 +1,1 @@
-![Alt text](/../master/skullbasher.png.png?raw=true "") # Skull Basher
+<h1>SKULL BASHER</h1><img src="skullbasher.png" />
