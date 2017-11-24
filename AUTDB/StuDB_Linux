@@ -19,14 +19,25 @@ do
 
            echo "Please Input Student Crendentials :"
            read -p "Student ID : " stuID
+           if ! [[ $stuID =~ ^[0-9]{7}$ ]] ;
+           then
+              echo -e "${RED}Invalid ID ! (should be numeric & 7 digits)${NC}"
+              break
+           fi
            read -p "Name : " stuName
            echo $stuID,$stuName >> DB.csv
            echo -e "${BRW}Student Added Successfully !${NC}"
            ;;
 
        "Update")
+
            echo "Please Input Student Crendentials :"
            read -p "Student ID : " stuID
+           if ! [[ $stuID =~ ^[0-9]{7}$ ]] ;
+           then
+              echo -e "${RED}Invalid ID ! (should be numeric & 7 digits)${NC}"
+              break
+           fi
            read -p "New Student Name :" stuName
            sed -i "s/${stuID},.*/${stuID},${stuName}/" DB.csv
            echo -e "${BRW}Student Name Updated Successfully !${NC}"
@@ -40,6 +51,11 @@ do
               case $sopt in
                   "Search By ID")
                     read -p "Student ID : " stuID
+                    if ! [[ $stuID =~ ^[0-9]{7}$ ]] ;
+                    then
+                       echo -e "${RED}Invalid ID ! (should be numeric & 7 digits)${NC}"
+                       break
+                    fi
                     res=$(cat DB.csv | grep $stuID | cut -f2 -d,)
                     echo -e "${BRW}Search Results :${NC}"
                     echo -e "${YEL} $res ${NC}"
