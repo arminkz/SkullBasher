@@ -38,6 +38,12 @@ do
               echo -e "${RED}Invalid ID ! (should be numeric & 7 digits)${NC}"
               break
            fi
+           mc=$(cat DB.csv | grep $stuID | wc -l)
+           if [[ $mc -eq 0 ]] ;
+           then
+              echo -e "${RED}no such student !${NC}"
+              break
+           fi
            read -p "New Student Name :" stuName
            sed -i "s/${stuID},.*/${stuID},${stuName}/" DB.csv
            echo -e "${BRW}Student Name Updated Successfully !${NC}"
